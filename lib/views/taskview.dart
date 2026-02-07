@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants/appColors.dart';
 import 'package:notes_app/controllers/taskcontroller.dart';
+import 'package:notes_app/controllers/themecontroller.dart';
+
 import 'package:notes_app/widgets/add_task_dialogue.dart';
 import 'package:notes_app/widgets/delete_task_dialogue.dart';
 import 'package:notes_app/widgets/edit_task_dialogue.dart';
@@ -7,10 +10,12 @@ import 'package:notes_app/widgets/task_tile.dart';
 
 class TaskListView extends StatefulWidget {
   final TaskListController controller;
+   final ThemeController themeController;
 
   const TaskListView({
     super.key,
-    required this.controller
+    required this.controller,
+    required this.themeController
   });
 
   @override
@@ -25,7 +30,16 @@ class _TaskListViewState extends State<TaskListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Task List"),
-       backgroundColor: Theme.of(context).primaryColor,),
+       actions: [
+          IconButton(
+            icon: Icon(
+              widget.themeController.isDark
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
+            ),
+          onPressed: widget.themeController.toggleTheme,
+          ),
+        ],),
       body: ListView.builder(
         itemCount: widget.controller.tasks.length,
         itemBuilder: (context, index) {
@@ -65,7 +79,9 @@ class _TaskListViewState extends State<TaskListView> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(  onPressed: () {
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        onPressed: () {
           showDialog(
             context: context,
             builder: (_) => AddTaskDialog(
@@ -76,7 +92,7 @@ class _TaskListViewState extends State<TaskListView> {
             ),
           );
         },
-        child: const Icon(Icons.add),
-    ),);
+        child: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
+    ));
   }
 }

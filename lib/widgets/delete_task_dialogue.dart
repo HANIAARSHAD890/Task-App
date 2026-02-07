@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:notes_app/utilities/appColors.dart';
-
+import 'package:notes_app/constants/appColors.dart';
 class DeleteTaskDialog extends StatelessWidget {
   final VoidCallback onDelete;
 
@@ -20,6 +19,7 @@ class DeleteTaskDialog extends StatelessWidget {
         ElevatedButton(
              style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.deleteRed,
+               foregroundColor:Theme.of(context).colorScheme.onPrimary,
           ),
           onPressed: () {
             onDelete();

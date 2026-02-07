@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/utilities/appColors.dart';
+import 'package:notes_app/constants/appColors.dart';
 
 class AddTaskDialog extends StatelessWidget {
   final void Function(String) onAdd;
@@ -25,8 +25,10 @@ class AddTaskDialog extends StatelessWidget {
           child: const Text("Cancel"),
         ),
         ElevatedButton(
+        
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryOrange,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary
           ),
           onPressed: () {
             if (controller.text.trim().isNotEmpty) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants/appColors.dart';
 import 'package:notes_app/models/taskmodel.dart';
-import 'package:notes_app/utilities/appColors.dart';
 
 class EditTaskDialog extends StatelessWidget {
   final Task task;
@@ -26,7 +26,8 @@ class EditTaskDialog extends StatelessWidget {
         ),
         ElevatedButton(
                style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryOrange,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+               foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
           onPressed: () {
             onUpdate(controller.text);
